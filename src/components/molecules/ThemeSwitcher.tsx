@@ -13,7 +13,7 @@ export function ThemeSwitcher() {
 
   return (
     <Button variant="secondary" onClick={toggleTheme}>
-      {theme === 'dark' ? 'Mode Terang' : 'Mode Gelap'}
+      {theme === 'dark' ? 'Light mode' : 'Dark mode'}
     </Button>
   )
 }
