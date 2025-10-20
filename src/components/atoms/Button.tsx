@@ -9,7 +9,7 @@ type ButtonProps = {
 
 export const Button = ({ children, onClick, variant = "primary", className = "",}: ButtonProps) => {
   const baseStyle =
-    "px-4 py-2 rounded-full font-semibold transition-colors duration-300";
+    "px-4 py-2 rounded-full font-semibold transition-colors duration-300 cursor-pointer";
   const variantStyle =
     variant === "primary"
       ? "bg-blue-600 text-white hover:bg-blue-700"
