@@ -1,7 +1,6 @@
 import { Header } from "@/components/organisms/Header";
 import { HeroSection } from "@/components/organisms/HeroSection";
 import { Footer } from "@/components/organisms/Footer";
-import { ThemeProvider } from '@/components/ThemeProvider'
 
 export default function Home() {
   return (
