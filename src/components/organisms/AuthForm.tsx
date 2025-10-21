@@ -18,9 +18,10 @@ const PrivacyPolicyModal = ({ isOpen, onClose, onAgree }: { isOpen: boolean; onC
         </div>
         <div className="p-6 overflow-y-auto space-y-4 text-zinc-400">
           <h3 className="font-semibold text-white">Definisi</h3>
-          <p className="text-sm">
-            SolvionFit ("kami", "situs", "aplikasi") menghargai privasi Anda dan berkomitmen untuk melindungi data pribadi yang Anda berikan. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda. Dengan mengakses atau menggunakan layanan SolvionFit, Anda setuju dengan pengumpulan dan penggunaan data sesuai dengan kebijakan ini.
-          </p>
+   <p className="text-sm">
+  SolvionFit (&quot;kami&quot;, &quot;situs&quot;, &quot;aplikasi&quot;) menghargai privasi Anda dan berkomitmen untuk melindungi data pribadi yang Anda berikan. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda. Dengan mengakses atau menggunakan layanan SolvionFit, Anda setuju dengan pengumpulan dan penggunaan data sesuai dengan kebijakan ini.
+</p>
+
           
           <h3 className="font-semibold text-white mt-4">Kebijakan Privasi</h3>
           <ol className="list-decimal list-inside space-y-3 text-sm">
@@ -98,15 +99,14 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
             onClose={() => setIsModalOpen(false)}
             onAgree={handleAgreeAndClose}
         />
-        <div className="w-full min-h-screen flex bg-black">
+     <div className={`w-full min-h-screen flex bg-black ${variant === 'register' ? 'md:h-screen' : ''}`}>
           {/* Left Side - Image/Illustration (Hidden on mobile) */}
-          <div className="hidden md:flex w-1/2 bg-gradient-to-br from-blue-600 to-purple-600 items-center justify-center p-12">
-            <Image  
+       <div className="hidden md:flex w-1/2 bg-gradient-to-br from-blue-600 to-purple-600 items-center justify-center p-12">            <Image  
                 src="/svg/auth.svg" 
                 alt="Fitness Illustration" 
-                width={320} // Adjusted size for better fit
-                height={320}
-                className="w-80 h-80"
+                width={400} 
+                height={400}
+                className="w-180 h-180"
             />
           </div>
   
@@ -156,7 +156,7 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
                   
                   <Input
                       id="email"
-                      label={isLogin ? "Email" : "Email or Phone Number"}
+                      label={isLogin ? "Email or Phone Number" : "Email or Phone Number"}
                       type="text"
                       placeholder="example@gmail.com"
                   />
@@ -232,7 +232,7 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
                   <p>
                     Already have an account?{' '}
                     <Link href="/auth/login" className="font-semibold text-blue-600 hover:text-blue-500">
-                      Login
+                      Sign In
                     </Link>
                   </p>
                 )}
