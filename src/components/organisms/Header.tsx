@@ -34,8 +34,8 @@ export const Header = () => {
         {/* [Kanan] Tombol Aksi & Hamburger */}
         <div className="flex-1 flex justify-end items-center gap-2">
            <div className="hidden md:flex items-center gap-2">
-            <Button variant="secondary">Login</Button>
-            <Button variant="primary">Daftar</Button>
+            <Link href="/auth/login" target="_blank"><Button variant="secondary">Login</Button></Link>
+            <Link href="/auth/register" target="_blank"><Button variant="primary">Daftar</Button></Link>
           </div>
           <div className="md:hidden">
             <button
