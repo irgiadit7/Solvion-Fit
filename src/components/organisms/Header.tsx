@@ -26,9 +26,9 @@ export const Header = () => {
           <a href="#" className="text-zinc-300 hover:text-blue-400 transition-colors">
             Learn More
           </a>
-          <a href="#" className="text-zinc-300 hover:text-blue-400 transition-colors">
+          <Link href="/about" className="text-zinc-300 hover:text-blue-400 transition-colors">
             About
-          </a>
+          </Link>
         </nav>
 
         {/* [Kanan] Tombol Aksi & Hamburger */}
