@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/atoms/Button';
 import { Input } from '../atoms/Input';
+import Image from 'next/image';
 
 type AuthFormProps = {
   variant: 'login' | 'register';
@@ -21,14 +22,14 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
           <div className="text-center space-y-6 z-10">
           
             
-            {/* Placeholder untuk ilustrasi - ganti dengan SVG/gambar Anda */}
             <div className="mt-8 flex items-center justify-center">
-              {/* <div className="w-64 h-64 bg-white/10 rounded-2xl backdrop-blur-sm flex items-center justify-center">
-                <svg className="w-32 h-32 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div> */}
-            </div>
+            <Image  
+                src="/svg/auth.svg" 
+                alt="Fitness Illustration" 
+                width={256} 
+                height={256}
+                className="w-124 h-124"
+              />            </div>
           </div>
         </div>
 
