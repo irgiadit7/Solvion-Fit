@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Button } from '../atoms/Button'
+import Link from 'next/link'
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -15,9 +16,9 @@ export const Header = () => {
       <header className="w-full max-w-5xl mx-auto flex items-center justify-between py-4 px-4 sm:px-0 relative">
         {/* [Kiri] Logo */}
         <div className="flex-1 flex justify-start">
-          <div className="text-2xl font-bold cursor-pointer">
+          <Link href="/" className="text-2xl font-bold cursor-pointer">
             Solvion<span className="text-blue-600">Fit</span>
-          </div>
+          </Link>
         </div>
 
         {/* [Tengah] Navigasi Desktop */}
