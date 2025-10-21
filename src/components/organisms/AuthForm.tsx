@@ -184,9 +184,9 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
                           <input type="checkbox" className="w-4 h-4 rounded border-zinc-700 bg-zinc-800 text-blue-600 focus:ring-blue-600" />
                           <span className="text-gray-400">Remember me</span>
                       </label>
-                      <a href="#" className="text-blue-600 hover:text-blue-500 font-medium">
+                      <Link href="/auth/forgot-password" className="text-blue-600 hover:text-blue-500 font-medium">
                           Forgot password?
-                      </a>
+                      </Link>
                       </div>
                   )}
 
