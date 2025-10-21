@@ -101,7 +101,8 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
         />
      <div className={`w-full min-h-screen flex bg-black ${variant === 'register' ? 'md:h-screen' : ''}`}>
           {/* Left Side - Image/Illustration (Hidden on mobile) */}
-       <div className="hidden md:flex w-1/2 bg-gradient-to-br from-blue-600 to-purple-600 items-center justify-center p-12">            <Image  
+       <div className="hidden md:flex w-1/2 bg-gradient-to-br from-blue-600 to-purple-600 items-center justify-center p-12">          
+         <Image  
                 src="/svg/auth.svg" 
                 alt="Fitness Illustration" 
                 width={400} 
