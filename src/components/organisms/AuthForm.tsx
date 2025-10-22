@@ -5,6 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/atoms/Button';
 import { Input } from '../atoms/Input';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 // --- Komponen Modal (Tidak diubah) ---
 const PrivacyPolicyModal = ({ isOpen, onClose, onAgree }: { isOpen: boolean; onClose: () => void; onAgree: () => void; }) => {
@@ -18,9 +21,9 @@ const PrivacyPolicyModal = ({ isOpen, onClose, onAgree }: { isOpen: boolean; onC
         </div>
         <div className="p-6 overflow-y-auto space-y-4 text-zinc-400">
           <h3 className="font-semibold text-white">Definisi</h3>
-   <p className="text-sm">
-  SolvionFit (&quot;kami&quot;, &quot;situs&quot;, &quot;aplikasi&quot;) menghargai privasi Anda dan berkomitmen untuk melindungi data pribadi yang Anda berikan. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda. Dengan mengakses atau menggunakan layanan SolvionFit, Anda setuju dengan pengumpulan dan penggunaan data sesuai dengan kebijakan ini.
-</p>
+          <p className="text-sm">
+            SolvionFit (&quot;kami&quot;, &quot;situs&quot;, &quot;aplikasi&quot;) menghargai privasi Anda dan berkomitmen untuk melindungi data pribadi yang Anda berikan. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda. Dengan mengakses atau menggunakan layanan SolvionFit, Anda setuju dengan pengumpulan dan penggunaan data sesuai dengan kebijakan ini.
+          </p>
 
           
           <h3 className="font-semibold text-white mt-4">Kebijakan Privasi</h3>
@@ -86,6 +89,68 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
     const isLogin = variant === 'login';
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isAgreed, setIsAgreed] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value,
+      });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsLoading(true);
+
+      if (variant === 'register') {
+        if (formData.password !== formData.confirmPassword) {
+          alert("Passwords don't match");
+          setIsLoading(false);
+          return;
+        }
+        try {
+          // <-- KODE YANG DIPERBAIKI ADA DI SINI
+          await axios.post('/api/auth/register', {
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+          });
+          router.push('/auth/login');
+        } catch (error) {
+          console.error(error);
+          alert('Registration failed. Please try again.');
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        try {
+          const result = await signIn('credentials', {
+            redirect: false,
+            email: formData.email,
+            password: formData.password,
+          });
+
+          if (result?.ok && !result.error) {
+            router.push('/');
+          } else {
+            alert('Invalid credentials');
+            console.error(result?.error);
+          }
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    };
 
     const handleAgreeAndClose = () => {
         setIsAgreed(true);
@@ -147,11 +212,10 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
               </div>
   
               {/* Form */}
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                   {!isLogin && (
                       <>
-                      <Input id="fullname" label="Full Name" type="text" placeholder="John Doe" />
-                      <Input id="username" label="Username" type="text" placeholder="johndoe" />
+                      <Input id="name" label="Full Name" type="text" placeholder="John Doe" onChange={handleChange} />
                       </>
                   )}
                   
@@ -160,6 +224,7 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
                       label={isLogin ? "Email or Phone Number" : "Email or Phone Number"}
                       type="text"
                       placeholder="example@gmail.com"
+                      onChange={handleChange}
                   />
   
                   <Input
@@ -167,6 +232,7 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
                       label="Password"
                       type="password"
                       placeholder="••••••••"
+                      onChange={handleChange}
                   />
 
                   {!isLogin && (
@@ -175,6 +241,7 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
                       label="Confirm Password"
                       type="password"
                       placeholder="••••••••"
+                      onChange={handleChange}
                       />
                   )}
   
@@ -214,9 +281,9 @@ export const AuthForm = ({ variant }: AuthFormProps) => {
                   <Button
                       type="submit"
                       className="w-full !rounded-lg !py-3 shadow-lg hover:shadow-xl"
-                      disabled={!isLogin && !isAgreed}
+                      disabled={(!isLogin && !isAgreed && variant === 'register') || isLoading}
                   >
-                      {isLogin ? 'Login' : 'Buat Akun'}
+                      {isLoading ? 'Loading...' : (isLogin ? 'Login' : 'Buat Akun')}
                   </Button>
               </form>
   
