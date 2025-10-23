@@ -44,7 +44,7 @@ export default function WorkoutPage() {
     useEffect(() => {
         const fetchWorkouts = async () => {
             try {
-                const response = await fetch('/api/workouts');
+                const response = await fetch("/api/workouts");
                 if (!response.ok) throw new Error('Failed to fetch workouts');
                 const data = await response.json();
                 setWorkoutPlans(data);
