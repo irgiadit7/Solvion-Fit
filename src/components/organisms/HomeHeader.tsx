@@ -16,7 +16,7 @@ const HomeIcon = ({ active = false }: { active?: boolean }) => (
 const ReelsIcon = () => (
       <Image 
     src="/svg/Reels.webp"
-    alt="Workout Icon" 
+    alt="Reels Icon" 
     width={32}
     height={32}
     />
@@ -87,16 +87,16 @@ export const HomeHeader = () => {
                             <Link href="/home" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors border-b-4 border-blue-500">
                                 <HomeIcon active />
                             </Link>
-                            <Link href="#" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors">
+                            <Link href="reels" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors">
                                 <ReelsIcon />
                             </Link>
-                            <Link href="#" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors">
+                            <Link href="/workout" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors">
                                 <WorkoutIcon />
                             </Link>
-                            <Link href="#" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors">
+                            <Link href="/skincare" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors">
                                 <SkincareIcon />
                             </Link>
-                            <Link href="#" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors">
+                            <Link href="/groups" className="px-8 py-2 rounded-lg hover:bg-zinc-700 transition-colors">
                                 <GroupsIcon />
                             </Link>
                         </div>
