@@ -1,4 +1,3 @@
-// src/app/(pages)/(main)/workout/page.tsx
 'use client';
 
 import React from 'react';
@@ -42,24 +41,26 @@ export default function WorkoutPage() {
                 </button>
             </div>
 
+
             {/* Weekly Goal & Quick Start */}
             <div className="grid grid-cols-4 gap-8 border border-gray-600 p-4 rounded-2xl relative bg-zinc-800/40">
-                <div className="bg-zinc-700 rounded-lg p-4 text-center">01</div>
-                <div className="bg-zinc-700 rounded-lg p-4 text-center">02</div>
-                <div className="bg-zinc-700 rounded-lg p-4 text-center">03</div>
-                <div className="bg-zinc-700 rounded-lg p-4 text-center">04</div>
+                 {/* Placeholder boxes 01-04 */}
+                <div className="bg-zinc-700 rounded-lg p-4 text-center h-[152px]">01</div> {/* Adjust height to match */}
+                <div className="bg-zinc-700 rounded-lg p-4 text-center h-[152px]">02</div> {/* Adjust height to match */}
+                <div className="bg-zinc-700 rounded-lg p-4 text-center h-[152px]">03</div> {/* Adjust height to match */}
+                <div className="bg-zinc-700 rounded-lg p-4 text-center h-[152px]">04</div> {/* Adjust height to match */}
 
-                {/* --- PERUBAHAN DI SINI --- */}
-                {/* Kotak 05 diganti dengan MusicPlayer, dan saya lebarkan kolomnya agar pas */}
-                <div className="[grid-column:1/span_1] [width:150%] ">
+                {/* Music Player Container - Ubah tinggi jadi h-[152px] */}
+                <div className="[grid-column:1/span_1] [width:150%] h-[152px]"> {/* Ubah tinggi jadi h-[152px] */}
                     <MusicPlayer />
                 </div>
-                
-                {/* Kotak 06 sekarang menempati sisa 2 kolom */}
-                <div className="[grid-column:2/span_3] ml-[14%] bg-zinc-700 rounded-lg p-4 text-center">
+
+                {/* Box 06 */}
+                <div className="[grid-column:2/span_3] ml-[14%] bg-zinc-700 rounded-lg p-4 text-center h-[152px]"> {/* Adjust height to match */}
                     06
                 </div>
 
+                {/* Placeholder boxes 07-09 */}
                 <div className="col-span-4 grid grid-cols-3 gap-8 mt-4">
                     <div className="bg-zinc-700 rounded-lg p-4 text-center">07</div>
                     <div className="bg-zinc-700 rounded-lg p-4 text-center">08</div>
@@ -68,7 +69,7 @@ export default function WorkoutPage() {
             </div>
 
             {/* Library and Blog Section */}
-            <div className="max-w-full mx-auto space-y-8">
+             <div className="max-w-full mx-auto space-y-8">
                 <h1 className="text-3xl font-bold text-white text-center">Workout</h1>
                 <div className="grid grid-cols-1 gap-8">
                     {/* Library Card with Video Background */}
@@ -93,3 +94,4 @@ export default function WorkoutPage() {
         </div>
     );
 }
+
