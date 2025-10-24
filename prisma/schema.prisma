@@ -27,6 +27,7 @@ model User {
   role            Role      @default(USER) 
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  songs           Song[]
 }
 
 model Category {
@@ -74,4 +75,18 @@ model WorkoutPlanExercise {
   restPeriodSecs Int?
 
   @@id([workoutPlanId, order])
+}
+
+model Song {
+  id            String   @id @default(cuid())
+  title         String
+  description   String?
+  songUrl       String   // Path ke file MP3 yang disimpan
+  coverImageUrl String   // Path ke gambar cover yang disimpan
+  uploadedAt    DateTime @default(now())
+
+  // Relasi ke User (opsional, tapi sangat direkomendasikan)
+  // Ini akan menghubungkan setiap lagu dengan user yang mengunggahnya
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
 }
